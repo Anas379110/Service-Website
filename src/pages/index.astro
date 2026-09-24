@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GuideCard from '../components/GuideCard.astro';
+import { isPublished, sortByVerifiedDesc } from '../lib/content';
+
+const allGuides = await getCollection('guides', isPublished);
+const latest = sortByVerifiedDesc(allGuides).slice(0, 10);
+---
+<BaseLayout title="الرئيسية">
+  <h1 class="text-2xl font-bold mb-6">أدلة الخدمات الحكومية والتعليمية</h1>
+  {latest.length === 0 ? (
+    <p class="text-neutral-500">لا توجد أدلة منشورة بعد.</p>
+  ) : (
+    <div class="grid gap-4 md:grid-cols-2">
+      {latest.map((entry) => <GuideCard entry={entry} />)}
+    </div>
+  )}
+</BaseLayout>

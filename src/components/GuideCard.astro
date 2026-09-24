@@ -1,0 +1,23 @@
+---
+import { needsRecheck } from '../lib/content';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  entry: CollectionEntry<'guides'>;
+}
+const { entry } = Astro.props;
+const { title, country, serviceType, lastVerifiedDate, excerpt } = entry.data;
+const formattedDate = new Intl.DateTimeFormat('ar', { dateStyle: 'medium' }).format(lastVerifiedDate);
+const recheck = needsRecheck(entry);
+---
+<a href={`/guide/${entry.slug}`} class="block border border-neutral-200 rounded-lg p-4 hover:shadow-md transition-shadow bg-white">
+  <div class="flex items-center justify-between">
+    <span class="text-xs text-brand font-medium">{country} · {serviceType.replace('_', ' ')}</span>
+    {recheck && (
+      <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded">قيد إعادة التحقق</span>
+    )}
+  </div>
+  <h3 class="text-lg font-bold mt-1 mb-2">{title}</h3>
+  <p class="text-sm text-neutral-700 mb-2">{excerpt}</p>
+  <time datetime={lastVerifiedDate.toISOString()} class="text-xs text-neutral-500">آخر تحقق: {formattedDate}</time>
+</a>

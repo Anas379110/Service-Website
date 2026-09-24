@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideCard from '../../components/GuideCard.astro';
+import { isPublished, sortByVerifiedDesc, filterByCountry } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const countries = ['سوريا', 'السعودية', 'الإمارات', 'قطر', 'الكويت'];
+  return countries.map((country) => ({ params: { country } }));
+}
+
+const { country } = Astro.params;
+const allGuides = await getCollection('guides', isPublished);
+const filtered = sortByVerifiedDesc(filterByCountry(allGuides, country ?? ''));
+---
+<BaseLayout title={`أدلة ${country}`}>
+  <h1 class="text-2xl font-bold mb-6">أدلة {country}</h1>
+  {filtered.length === 0 ? (
+    <p class="text-neutral-500">لا توجد أدلة لهذه الدولة بعد.</p>
+  ) : (
+    <div class="grid gap-4 md:grid-cols-2">
+      {filtered.map((entry) => <GuideCard entry={entry} />)}
+    </div>
+  )}
+</BaseLayout>
