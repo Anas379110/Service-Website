@@ -1,20 +1,19 @@
-# Service — منصة شروحات الخدمات الحكومية والتعليمية
-**Service — Government & Educational Guides Platform** · التصنيف: موقع محتوى
-> ملف تعريفي بالمشروع ونطاقه؛ هذا المستودع يحتوي على التوثيق فقط ولا يتضمن الشفرة المصدرية.
+# Service — Government & Educational Guides Platform
+**Service — Government & Educational Guides Platform** · Category: Content website
 > Project overview and scope; this repository contains documentation only, not implementation source code.
 
-## نبذة عن المشروع
-موقع دليلي لسوريا والخليج العربي يشرح المنصات الحكومية والموارد التعليمية وأدلة الاستخدام خطوة بخطوة.
+## Project overview
+A guide site for Syria and the Arabian Gulf that explains government platforms, educational resources, and step-by-step user guides.
 
-## أبرز النقاط
-- 30-50 مقال شرح أصلي على الأقل قبل الإطلاق، بتحديث يومي
-- سريع، متجاوب مع الجوال، ومؤمّن بـSSL على Cloudflare
-- مصادره من الأصدق والأحدث والمجانية بالكامل
+## Highlights
+- 30-50 original explanatory articles at minimum before launch, with daily updates
+- Fast, mobile-responsive, and secured with SSL on Cloudflare
+- Sources are the most reliable, up-to-date, and entirely free
 
-## الدور
-تطوير منصة أدلة عربية للخدمات الحكومية والتعليمية مع تنظيم المقالات وتجربة استخدام متوافقة مع الجوال.
+## Role
+Develop an Arabic guides platform for government and educational services with article organization and a mobile-friendly user experience.
 
-## التقنيات المستخدمة
+## Technologies used
 HTML/CSS/JS, Cloudflare Pages, SSL/HTTPS, SEO, AdSense
 
-التفاصيل في [TECHSTACK.md](./TECHSTACK.md).
+Details in [TECHSTACK.md](./TECHSTACK.md).

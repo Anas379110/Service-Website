@@ -1,4 +1,4 @@
-# 🛠️ التقنيات المستخدمة — Service — منصة شروحات الخدمات الحكومية والتعليمية
+# 🛠️ Tech Stack — Service — Government & Educational Guides Platform
 - HTML/CSS/JS
 - Cloudflare Pages
 - SSL/HTTPS
