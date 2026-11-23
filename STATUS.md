@@ -1,11 +1,15 @@
-# Service status
+# Service release status
 
-23 November 2026 20:59. Active full-release recovery, not launched.
+23 November 2026. Source published, development staging live, product NOT launched.
 
-31 distinct source-backed Arabic drafts are prepared in four private review packages across Syria, Saudi Arabia, UAE, Qatar and Kuwait. No human editorial approvals and no public guides. Kuwait drafts5,30,31 have practical browser-access limitations and remain not approval-ready. Reaching a draft count is not full scope completion. Full original30-50guide scope remains.
+## Content
+31 distinct original Arabic drafts are prepared across Syria, Saudi Arabia, UAE, Qatar and Kuwait in four private human-review packages. Human approvals:0. Public guides:0. Kuwait drafts5,30,31 are not practical approval-ready due to the official-browser access gap. The original30-50guide scope is not complete merely because drafts total31. No reviewer or evidence ledger is fabricated.
 
-Public corrections contact homsi434q@gmail.com explicitly confirmed by the user23Nov20:26:58. Factual privacy/terms, system typography, release validation and CSP-compatible external assets prepared locally. Browser CSP/search/filter/reset/noJS/RTL/mobile checks passed on empty reader and test-only fixtures that were then removed. Restored immutable development artifact checked separately; this is not production rollback.
+## Published engineering
+Commit71c74679befa967efdecd17a95dc81edbf2eb869 includes the tested reader shell, approved public corrections contact, policies, external assets, responsive fixes and release checks. A fresh worktree from remote main passed20tests, lint, Astrocheck, development build and audit0. CSP-enforced browser interactions passed; synthetic test guides removed before publication. Immutable development restore was separately checked, not a production rollback.
 
-Cloudflare Service empty staging project exists; bounded dashboard ZIP upload stalled at0B. No deployment submitted and no verified staging URL. GitHub browser session and native integration verified owner Anas379110; CLI not authenticated. GitHub Pages settings verified disabled. Billing-problem banner observed, no billing change or trial started. Alternative free route still under qualification.
+## Development deployment
+https://service-reader-staging.onrender.com/ is a public empty development reader with a clear banner, noindex response/meta and disallow robots. It is NOT launch. Render static site srv-dc285p4ipgvc73829rvg, initial deploy dep-dc285pkipgvc73829sp0 from71c7467. Auto-DeployOFF. Free Hobby/no card, no paid upgrade, within included quotas at creation. Routes/about/contact/privacy/terms/Syria200, unknown404, live320/390/1280/read/reset/CSP/no external requests checked. Render-specific response headers verified. Host privacy wording update prepared after initial deployment.
 
-Source main remains8114079 until a real subsequent commit is verified. Candidate changes not yet committed/uploaded. CI prepared, not a successful hosted run. Production origin/host policy/live Lighthouse and final release verification remain. No reviewer labels or approval ledger fabricated.
+## Blockers and remaining qualification
+Exact human editorial review and practical Kuwait source access remain. Production origin/content gate remains closed. Hosted Actions run45234309052 did not start because account is locked due to billing; no checks executed there and no payment changes or retries. Live Lighthouse, full noJS/all-country verification, host privacy redeploy and rollback-route evidence still pending. Cloudflare bounded direct upload stalled before any deploy; no repeat without new signal. No other project work replaces this outcome.
