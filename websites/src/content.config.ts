@@ -1,12 +1,14 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
+import { glob } from 'astro/loaders';
 
 const guides = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.md', base: './src/content/guides' }),
   schema: z.object({
     title: z.string(),
     country: z.enum(['سوريا', 'السعودية', 'الإمارات', 'قطر', 'الكويت']),
     serviceType: z.enum(['توثيق', 'تعليم', 'إقامة_وجوازات', 'أخرى']),
-    officialSourceUrl: z.string().url(),
+    officialSourceUrl: z.url({ protocol: /^https$/ }).refine(value => { const url = new URL(value); return !url.username && !url.password; }, 'Official sources must use HTTPS without credentials'),
     lastVerifiedDate: z.date(), // يقود منطق "بحاجة تحقق"
     reviewedBy: z.string(),
     reviewedAt: z.date().optional(),

@@ -1,11 +1,11 @@
 ---
-import AdSlot from '../components/AdSlot.astro';
+import '../styles/global.css';
 
 export interface Props {
   title: string;
   description?: string;
 }
-const { title, description = "Service — أدلة خدمات حكومية وتعليمية لسوريا والخليج العربي" } = Astro.props;
+const { title, description = "Service أدلة خدمات حكومية وتعليمية لسوريا والخليج العربي" } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
 ---
 <!doctype html>
@@ -14,7 +14,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString(
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="noindex,nofollow" />
     <meta property="og:locale" content="ar_AR" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={`${title} | Service`} />
@@ -30,7 +30,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString(
   </head>
   <body class="font-arabic bg-neutral-50 text-neutral-900 min-h-screen flex flex-col">
     <header class="bg-brand text-white">
-      <nav class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <nav class="max-w-5xl mx-auto px-4 py-3 flex items-start md:items-center justify-between flex-col md:flex-row gap-4">
         <a href="/" class="text-xl font-bold">Service</a>
         <div class="flex gap-4 text-sm flex-wrap">
           <a href="/country/سوريا">سوريا</a>
@@ -43,14 +43,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString(
     </header>
 
     <main class="flex-1 max-w-5xl mx-auto px-4 py-8 w-full">
-      <AdSlot position="header" />
+      <aside class="mb-6 border-r-4 border-brand bg-brand-light p-4 text-sm">نسخة تطوير غير حكومية لا توجد أدلة مراجعة منشورة بعد والمصادر الرسمية هي المرجع دائما</aside>
       <slot />
-      <AdSlot position="footer" />
+
     </main>
 
     <footer class="bg-brand-dark text-white text-sm">
       <div class="max-w-5xl mx-auto px-4 py-6 flex flex-wrap gap-4 justify-between">
-        <p>© {new Date().getFullYear()} Service — anasnet.com</p>
+        <p>© {new Date().getFullYear()} Service</p>
         <div class="flex gap-4">
           <a href="/about">من نحن</a>
           <a href="/contact">اتصل بنا</a>

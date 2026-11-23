@@ -10,9 +10,9 @@ const { title, country, serviceType, lastVerifiedDate, excerpt } = entry.data;
 const formattedDate = new Intl.DateTimeFormat('ar', { dateStyle: 'medium' }).format(lastVerifiedDate);
 const recheck = needsRecheck(entry);
 ---
-<a href={`/guide/${entry.slug}`} class="block border border-neutral-200 rounded-lg p-4 hover:shadow-md transition-shadow bg-white">
+<a href={`/guide/${entry.id}`} class="block border border-neutral-200 rounded-lg p-4 hover:shadow-md transition-shadow bg-white">
   <div class="flex items-center justify-between">
-    <span class="text-xs text-brand font-medium">{country} · {serviceType.replace('_', ' ')}</span>
+    <span class="text-xs text-brand font-medium">{country}  {serviceType.replace('_', ' ')}</span>
     {recheck && (
       <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded">قيد إعادة التحقق</span>
     )}
