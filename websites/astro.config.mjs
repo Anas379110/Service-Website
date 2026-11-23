@@ -4,5 +4,7 @@ import autoprefixer from 'autoprefixer';
 
 export default defineConfig({
   output: 'static',
-  vite: { css: { postcss: { plugins: [tailwind(), autoprefixer()] } } },
+  build: { inlineStylesheets: 'never' },
+  site: process.env.SERVICE_ORIGIN || undefined,
+  vite: { build: { assetsInlineLimit: 0 }, css: { postcss: { plugins: [tailwind(), autoprefixer()] } } },
 });
