@@ -2,9 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { validateRelease } from '../src/lib/release.ts';
+import { collectGuideFiles } from './release-files.mjs';
 
 const dir = path.resolve('src/content/guides');
-const files = fs.readdirSync(dir).filter(f=>f.endsWith('.md'));
+const files = collectGuideFiles(dir);
 // Frontmatter uses this restricted scalar format for release fields.
 const field = (text,key) => text.split('\n').find(l=>l.startsWith(key+':'))?.slice(key.length+1).trim().replace(/^['"]|['"]$/g,'') ?? '';
 const guides = files.map(file=>{
