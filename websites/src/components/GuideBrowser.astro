@@ -1,0 +1,65 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import GuideCard from './GuideCard.astro';
+interface Props { guides: CollectionEntry<'guides'>[]; country?: string }
+const { guides, country = '' } = Astro.props;
+const countries = ['سوريا', 'السعودية', 'الإمارات', 'قطر', 'الكويت'];
+const types = ['توثيق', 'تعليم', 'إقامة_وجوازات', 'أخرى'];
+---
+<section data-guide-browser data-country={country} aria-label="البحث في الأدلة">
+  <form class="mb-6 grid gap-4 md:grid-cols-2" hidden>
+    <div class="md:col-span-2">
+      <label for="guide-query" class="block font-medium mb-2">ابحث عن دليل</label>
+      <input id="guide-query" name="query" type="search" maxlength="200" placeholder="اسم الخدمة أو كلمة من وصفها" class="w-full border border-neutral-300 rounded p-3 bg-white focus:outline-brand" />
+    </div>
+    {!country && <div>
+      <label for="guide-country" class="block mb-2">الدولة</label>
+      <select id="guide-country" name="country" class="w-full border border-neutral-300 rounded p-3 bg-white focus:outline-brand">
+        <option value="">كل الدول</option>{countries.map(value => <option value={value}>{value}</option>)}
+      </select>
+    </div>}
+    <div>
+      <label for="guide-type" class="block mb-2">نوع الخدمة</label>
+      <select id="guide-type" name="serviceType" class="w-full border border-neutral-300 rounded p-3 bg-white focus:outline-brand">
+        <option value="">كل الخدمات</option>{types.map(value => <option value={value}>{value.replace('_', ' ')}</option>)}
+      </select>
+    </div>
+    <div class="flex gap-3 items-end">
+      <button type="submit" class="bg-brand-dark text-white rounded px-5 py-3">بحث</button>
+      <button type="reset" class="border border-neutral-300 rounded px-5 py-3">مسح البحث</button>
+    </div>
+  </form>
+  <p data-search-status role="status" aria-live="polite" class="mb-4 text-neutral-700">{guides.length === 0 ? 'لا توجد أدلة مراجعة منشورة بعد' : `عدد الأدلة ${guides.length}`}</p>
+  <p data-no-matches hidden class="bg-brand-light p-4 rounded mb-4">لا توجد نتائج مطابقة حاول كلمة أخرى أو امسح البحث</p>
+  <noscript><p class="mb-4">تظهر جميع الأدلة المتاحة البحث التفاعلي يحتاج إلى تفعيل JavaScript</p></noscript>
+  <div class="grid gap-4 md:grid-cols-2">
+    {guides.map(guide => <div data-guide-item data-title={guide.data.title} data-excerpt={guide.data.excerpt} data-country={guide.data.country} data-service-type={guide.data.serviceType}><GuideCard entry={guide} /></div>)}
+  </div>
+</section>
+<script>
+  import { matchesGuide } from '../lib/search';
+  for (const browser of document.querySelectorAll<HTMLElement>('[data-guide-browser]')) {
+    const form = browser.querySelector<HTMLFormElement>('form');
+    const status = browser.querySelector<HTMLElement>('[data-search-status]');
+    const empty = browser.querySelector<HTMLElement>('[data-no-matches]');
+    const cards = [...browser.querySelectorAll<HTMLElement>('[data-guide-item]')];
+    if (!form || !status || !empty) continue;
+    form.hidden = false;
+    const apply = () => {
+      const values = new FormData(form);
+      const filters = { query: String(values.get('query') ?? '').slice(0, 200), country: browser.dataset.country || String(values.get('country') ?? ''), serviceType: String(values.get('serviceType') ?? '') };
+      let count = 0;
+      for (const card of cards) {
+        card.hidden = !matchesGuide({ title: card.dataset.title ?? '', excerpt: card.dataset.excerpt ?? '', country: card.dataset.country ?? '', serviceType: card.dataset.serviceType ?? '' }, filters);
+        if (!card.hidden) count++;
+      }
+      status.textContent = cards.length === 0 ? 'لا توجد أدلة مراجعة منشورة بعد' : `عدد النتائج ${count} من ${cards.length}`;
+      empty.hidden = count > 0 || cards.length === 0;
+    };
+    form.addEventListener('submit', event => { event.preventDefault(); apply(); });
+    form.addEventListener('input', apply);
+    form.addEventListener('change', apply);
+    form.addEventListener('reset', () => requestAnimationFrame(apply));
+  }
+</script>
+<style> [hidden] { display: none !important; } </style>
