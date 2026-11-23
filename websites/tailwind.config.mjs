@@ -3,7 +3,7 @@ export default {
   content: ['./src/**/*.{astro,html,ts}'],
   theme: {
     extend: {
-      fontFamily: { arabic: ['"IBM Plex Sans Arabic"', 'sans-serif'] },
+      fontFamily: { arabic: ['Tahoma', 'Arial', 'sans-serif'] },
       colors: {
         // هوية Service — تركوازي/أزرق ثقة + رمادي فاتح (UI-UX.md)
         brand: {
