@@ -10,7 +10,9 @@
     "test": "vitest run",
     "lint": "eslint . --ext .ts,.astro",
     "bundle-size": "node scripts/report-bundle-size.js",
-    "lighthouse:home": "node ../tooling/lighthouse/lighthouse.mjs"
+    "lighthouse:home": "node ../tooling/lighthouse/lighthouse.mjs",
+    "check:release": "node --experimental-strip-types scripts/check-release.mjs",
+    "build:production": "npm run check:release && astro build"
   },
   "dependencies": {
     "astro": "7.4.13",
