@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body { overflow-wrap: anywhere; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #0A5A61; outline-offset: 4px; }
+}
+@layer components {
+  .guide-body { max-width: 72ch; line-height: 2; }
+  .guide-body h2 { font-size: 1.4rem; font-weight: 700; margin-block: 2rem 1rem; }
+  .guide-body h3 { font-size: 1.15rem; font-weight: 700; margin-block: 1.5rem .75rem; }
+  .guide-body p, .guide-body ul, .guide-body ol { margin-block: 1rem; }
+  .guide-body ol { list-style: decimal; padding-inline-start: 1.5rem; }
+  .guide-body ul { list-style: disc; padding-inline-start: 1.5rem; }
+  .guide-body li { margin-block: .65rem; padding-inline-start: .25rem; }
+  .guide-body a { text-decoration: underline; color: #0A5A61; }
+}
