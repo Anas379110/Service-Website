@@ -1,15 +1,21 @@
 # Service release status
 
-23 November 2026. Source published, development staging live, product NOT launched.
+23 November 2026. Engineering source published and development staging live. Product NOT launched.
 
 ## Content
-31 distinct original Arabic drafts are prepared across Syria, Saudi Arabia, UAE, Qatar and Kuwait in four private human-review packages. Human approvals:0. Public guides:0. Kuwait drafts5,30,31 are not practical approval-ready due to the official-browser access gap. The original30-50guide scope is not complete merely because drafts total31. No reviewer or evidence ledger is fabricated.
+33 original Arabic drafts prepared across Syria, Saudi Arabia, UAE, Qatar and Kuwait remain private for human review. Human approvals: 0. Public guides: 0. Kuwait drafts 5, 30 and 31 retain an official-source access gap and are not practical approval-ready. The original 30 to 50 guide scope is not complete merely because 33 drafts exist. No reviewer or review evidence is fabricated.
 
 ## Published engineering
-Commit71c74679befa967efdecd17a95dc81edbf2eb869 includes the tested reader shell, approved public corrections contact, policies, external assets, responsive fixes and release checks. A fresh worktree from remote main passed20tests, lint, Astrocheck, development build and audit0. CSP-enforced browser interactions passed; synthetic test guides removed before publication. Immutable development restore was separately checked, not a production rollback.
+Application revision e67c91450a98fc6d17912d5a40c1e2fda048493a includes the tested reader shell, approved corrections contact, factual policies, system fonts, accessible responsive layout, local favicon and release controls. Local 20 tests, lint, Astro diagnostics, development build and npm audit passed on 23 November. The audit found zero vulnerabilities at that check, not a security guarantee. Synthetic fixtures were removed before publication.
 
-## Development deployment
-https://service-reader-staging.onrender.com/ is a public empty development reader with a clear banner, noindex response/meta and disallow robots. It is NOT launch. Render static site srv-dc285p4ipgvc73829rvg, initial deploy dep-dc285pkipgvc73829sp0 from71c7467. Auto-DeployOFF. Free Hobby/no card, no paid upgrade, within included quotas at creation. Routes/about/contact/privacy/terms/Syria200, unknown404, live320/390/1280/read/reset/CSP/no external requests checked. Render-specific response headers verified. Host privacy wording update prepared after initial deployment.
+## Live development staging
+https://service-reader-staging.onrender.com/ is an empty development reader, not launch. Render static service srv-dc285p4ipgvc73829rvg, latest tested application deployment dep-dc28b856e07s73b2cdtg from e67c914. Auto-Deploy is OFF. Free Hobby/no card was verified at creation; no paid upgrade or trial was added. No custom domain is assumed.
 
-## Blockers and remaining qualification
-Exact human editorial review and practical Kuwait source access remain. Production origin/content gate remains closed. Hosted Actions run45234309052 did not start because account is locked due to billing; no checks executed there and no payment changes or retries. Live Lighthouse, full noJS/all-country verification, host privacy redeploy and rollback-route evidence still pending. Cloudflare bounded direct upload stalled before any deploy; no repeat without new signal. No other project work replaces this outcome.
+Actual response headers, Render-specific privacy wording, all five country routes, about/contact/privacy/terms, unknown-route 404, no-JavaScript empty fallback and reset were checked. Actual 320/390/1280 layouts were inspected. No page errors or third-party requests were observed. Mobile Lighthouse scored performance 100, accessibility 100, best practices 100 and SEO 63. The SEO score reflects intentional staging noindex; these results are measurements, not certification.
+
+## Remaining
+Genuine exact-text human review, practical verification for the blocked sources, reviewed catalog completion, production origin/configuration, real production deployment and final live qualification remain. Ordinary development builds deliberately remain noindex with an empty public catalog.
+
+Hosted Actions run https://github.com/Anas379110/Service-Website/actions/runs/45234309052 did not start because the account is locked for billing. No hosted checks executed. No payment changes or repeated retries were made.
+
+The previous-deployment rollback confirmation route was reached, but also displayed a Build not found panel. No rollback was submitted, so production rollback is not proven. Immutable development-artifact restoration passed separately. The bounded Cloudflare direct-upload attempt produced no deployment and was not retried without new evidence.
