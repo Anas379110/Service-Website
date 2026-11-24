@@ -1,4 +1,5 @@
 ---
+import releaseMode from '../../release-mode.json';
 import '../styles/global.css';
 
 export interface Props {
@@ -6,6 +7,7 @@ export interface Props {
   description?: string;
 }
 const { title, description = "Service أدلة خدمات حكومية وتعليمية لسوريا والخليج العربي" } = Astro.props;
+const production = releaseMode.production;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined;
 ---
 <!doctype html>
@@ -15,7 +17,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString(
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="robots" content="noindex,nofollow" />
+    <meta name="robots" content={production ? "index,follow" : "noindex,nofollow"} />
     <meta property="og:locale" content="ar_AR" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={`${title} | Service`} />
@@ -40,7 +42,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString(
     </header>
 
     <main id="main-content" class="flex-1 max-w-5xl mx-auto px-4 py-8 w-full">
-      <aside class="mb-6 border-r-4 border-brand bg-brand-light p-4 text-sm">نسخة تطوير غير حكومية لا توجد أدلة مراجعة منشورة بعد والمصادر الرسمية هي المرجع دائما</aside>
+      <aside class="mb-6 border-r-4 border-brand bg-brand-light p-4 text-sm">{production ? "دليل مستقل غير حكومي مراجعة المحتوى آلية والمصادر الرسمية هي المرجع دائما" : "نسخة تطوير غير حكومية لا توجد أدلة مراجعة منشورة بعد والمصادر الرسمية هي المرجع دائما"}</aside>
       <slot />
 
     </main>
