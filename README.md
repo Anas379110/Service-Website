@@ -1,19 +1,17 @@
 # Service
 
-Arabic government and educational guide reader, with an existing Astro implementation.
+Arabic independent guide reader for Syria, Saudi Arabia, UAE, Qatar and Kuwait.
 
-## Current state
+## Release candidate 24 November 2026
 
-Local functional prototype, not a launched or complete guides service. The real guide catalog is empty. Do not present synthetic test fixtures as government advice or editorially reviewed guides.
+30 original guides have automated editorial/source review, not human or government approval. Official pages were read against practical claims, limitations remain beside the instructions, and unverified drafts5/30/31are excluded. No authenticated government transaction was tested. The catalog is not a substitute for the official terms.
 
-Implemented country pages, Arabic title/excerpt search, combined country/service-type filters, result counts, reset, no-match and empty-catalog states, no-JavaScript fallback, review metadata display and stale-guide warnings. Browser checks cover search, filters, reset, migrated guide links, country scoping and responsive layouts. Search runs locally without tracking or a backend.
+Country pages, Arabic search, combined filters, reset, no-match state, no-JavaScript fallback, source links and correction contact are implemented. No ads, analytics, account system or application form is active.
 
-## Development
+## Build
 
-Node >=22.23.4. From `websites` run `npm ci`, `npm test`, `npm run lint`, `npx astro check`, `npm run build`. Astro 7 uses `src/content.config.ts`, a glob content loader, entry IDs and the `render` helper. Existing Tailwind 3 remains through PostCSS rather than the incompatible legacy Astro adapter.
+Node22.23.5or later. In `websites`: `npm ci`, `npm test`, `npm run lint`, `npx astro check`, `npm run build`.
 
-## Publication boundary
+`release-mode.json` explicitly selects production. Every production Astro build runs the recursive source/recency/country/count/exact-content-review gate before creating routes. The ledger records the actual automated review method. A reviewer label alone cannot publish a guide. Edits change the content hash and fail production builds until reviewed again.
 
-No government guide text was added in this engineering round. A nonblank reviewer field alone is metadata, not proof of human review or of an official source's identity. Guides need real current source verification, original permitted content, a real review and appropriate editorial decisions before publication. HTTPS URL validation rejects executable schemes and embedded credentials but does not establish that a host is official. No new ads, accounts, subscriptions or analytics were activated. Development pages and robots remain noindex/disallow. No valid production origin or deployment is claimed.
-
-The older target of 30-50 guides remains unmet. This repository is no longer described as documentation only, but it is also not described as a finished service.
+Origin: https://service-reader-staging.onrender.com/ . This free Render hostname retains its original staging name; deployment status is tracked separately, not inferred from this candidate.
