@@ -22,6 +22,7 @@ function makeEntry(overrides: Partial<CollectionEntry<'guides'>['data']> & { id?
 }
 
 describe('isPublished', () => {
+  it('rejects a label without a matching review ledger entry', () => { expect(isPublished(makeEntry({reviewedBy:'reviewer'}))).toBe(false); });
   it('يرفض بلا reviewedBy', () => {
     expect(isPublished(makeEntry({ reviewedBy: '' }))).toBe(false);
   });
