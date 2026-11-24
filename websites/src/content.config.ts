@@ -12,6 +12,7 @@ const guides = defineCollection({
     lastVerifiedDate: z.date(), // يقود منطق "بحاجة تحقق"
     reviewedBy: z.string(),
     reviewedAt: z.date().optional(),
+    reviewMethod: z.enum(['human', 'automated-source-review']).default('human'),
     aiGenerated: z.boolean().default(false),
     sources: z.array(z.string()).min(1),
     excerpt: z.string().max(160),
