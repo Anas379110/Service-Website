@@ -4,10 +4,11 @@ export interface ReleaseGuide {
   officialSourceUrl: string;
   reviewedBy: string;
   reviewedAt?: string;
+  reviewMethod?: string;
   lastVerifiedDate: string;
   contentHash?: string;
 }
-export interface ReviewApproval { contentHash: string; reviewer: string; approvedAt: string; evidence: string }
+export interface ReviewApproval { contentHash: string; reviewer: string; approvedAt: string; evidence: string; reviewMethod?: string }
 const countries = ['سوريا', 'السعودية', 'الإمارات', 'قطر', 'الكويت'];
 const hosts: Record<string, string[]> = {
   'سوريا': ['mofaex.gov.sy'], 'السعودية': ['moe.gov.sa', 'www.moe.gov.sa', 'my.gov.sa'],
@@ -30,8 +31,9 @@ export function validateRelease(guides: ReleaseGuide[], config: { origin: string
     if (url && (url.protocol !== 'https:' || url.username || url.password || !(hosts[g.country] ?? []).includes(url.hostname))) errors.push(`Unverified source host ${g.id}`);
     const age = now.valueOf() - new Date(g.lastVerifiedDate).valueOf();
     if (!Number.isFinite(age) || age < 0 || age > 60*86400000) errors.push(`Source verification stale or invalid ${g.id}`);
-    const approved = config.approvals.some(a => a.contentHash === g.contentHash && !!g.contentHash && a.reviewer === g.reviewedBy && a.approvedAt === g.reviewedAt && a.evidence.trim());
-    if (!approved || !g.reviewedBy.trim()) errors.push(`No matching real editorial approval ${g.id}`);
+    const approved = config.approvals.some(a => a.contentHash === g.contentHash && !!g.contentHash && a.reviewer === g.reviewedBy && a.approvedAt === g.reviewedAt && a.evidence.trim() && (g.reviewMethod ?? 'human') === (a.reviewMethod ?? 'human')); 
+    if (g.reviewMethod && !['human', 'automated-source-review'].includes(g.reviewMethod)) errors.push(`Invalid review method ${g.id}`);
+    if (!approved || !g.reviewedBy.trim()) errors.push(`No matching editorial review evidence ${g.id}`);
     const reviewTime = new Date(g.reviewedAt ?? '').valueOf();
     if (!Number.isFinite(reviewTime) || reviewTime > now.valueOf()) errors.push(`Invalid review date ${g.id}`);
   }
