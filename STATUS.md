@@ -1,7 +1,7 @@
-# Service release candidate 24 November 2026
+# Service launched 24 November 2026
 
-30 source-reviewed original guides are prepared across all five countries. Review method is automated and visible in each guide. Human approvals0. Source-blocked drafts5/30/31are excluded, not silently cleared. No authenticated government transaction was tested.
+Live https://service-reader-staging.onrender.com/ serves30original source-reviewed guides across all5countries. Review is automated, visible and bound to exact content. Human approvals0. Drafts5/30/31excluded for source gaps. No authenticated government transaction claimed.
 
-Local validation:25tests, ESLint, Astro diagnostics0errors0warnings, gated static build with30guide routes. Populated browser checks cover Arabic search, reset, combined/no-match filters, five country pages, all30guide sources, contact, policies,404and no-JavaScript fallback.320/390/1280layouts inspected. No page errors or third-party requests observed.
+Application7dcc93c deployed successfully at11:43:34GMT+3. See LAUNCH.md for deploy link and actual live qualification.25tests, lint, zero Astro diagnostics, gated build and all populated browser checks pass.320/390/1280pixels inspected. Final live Lighthouse100/100/100/100and CLS0, a dated measurement only.
 
-This file describes candidate qualification, not proof of deployment. Previous live Render deployment remains e67c914 until promotion and live verification. Hosted GitHub Actions was account-billing-blocked; no green hosted CI is claimed. No billing settings changed.
+Existing free Render hostname is the release origin despite its staging name. No paid change. Auto-deploy off. Hosted Actions account-billing-blocked, not green. Portfolio link added; no separate LinkedIn Service project spot found, no unrelated edit.
