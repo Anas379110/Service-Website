@@ -1,10 +1,11 @@
 import type { CollectionEntry } from 'astro:content';
+import reviews from '../../editorial-approvals.json';
 
 // حسب NFR بـ SRS.md: "آخر تحقق لا يتجاوز 60 يومًا" — عتبة إعادة التحقق
 const RECHECK_AFTER_DAYS = 60;
 
 export function isPublished(entry: CollectionEntry<'guides'>): boolean {
-  return entry.data.reviewedBy.trim() !== '';
+  return entry.data.reviewedBy.trim() !== '' && reviews.some(review => review.guideId === entry.id && review.reviewer === entry.data.reviewedBy && review.reviewMethod === entry.data.reviewMethod && new Date(review.approvedAt).valueOf() === entry.data.reviewedAt?.valueOf());
 }
 
 export function sortByVerifiedDesc(entries: CollectionEntry<'guides'>[]): CollectionEntry<'guides'>[] {
