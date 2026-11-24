@@ -7,26 +7,26 @@ const countries = ['سوريا', 'السعودية', 'الإمارات', 'قطر
 const types = ['توثيق', 'تعليم', 'إقامة_وجوازات', 'أخرى'];
 ---
 <section data-guide-browser data-country={country} aria-label="البحث في الأدلة">
-  <form class="mb-6 grid gap-4 md:grid-cols-2" hidden>
+  <form class="mb-6 grid gap-4 md:grid-cols-2">
     <div class="md:col-span-2">
       <label for="guide-query" class="block font-medium mb-2">ابحث عن دليل</label>
-      <input id="guide-query" name="query" type="search" maxlength="200" placeholder="اسم الخدمة أو كلمة من وصفها" class="w-full border border-neutral-300 rounded p-3 bg-white focus:outline-brand" />
+      <input id="guide-query" name="query" type="search" disabled maxlength="200" placeholder="اسم الخدمة أو كلمة من وصفها" class="w-full border border-neutral-300 rounded p-3 bg-white focus:outline-brand" />
     </div>
     {!country && <div>
       <label for="guide-country" class="block mb-2">الدولة</label>
-      <select id="guide-country" name="country" class="w-full border border-neutral-300 rounded p-3 bg-white focus:outline-brand">
+      <select id="guide-country" name="country" disabled class="w-full border border-neutral-300 rounded p-3 bg-white focus:outline-brand">
         <option value="">كل الدول</option>{countries.map(value => <option value={value}>{value}</option>)}
       </select>
     </div>}
     <div>
       <label for="guide-type" class="block mb-2">نوع الخدمة</label>
-      <select id="guide-type" name="serviceType" class="w-full border border-neutral-300 rounded p-3 bg-white focus:outline-brand">
+      <select id="guide-type" name="serviceType" disabled class="w-full border border-neutral-300 rounded p-3 bg-white focus:outline-brand">
         <option value="">كل الخدمات</option>{types.map(value => <option value={value}>{value.replace('_', ' ')}</option>)}
       </select>
     </div>
     <div class="flex gap-3 items-end">
-      <button type="submit" class="bg-brand-dark text-white rounded px-5 py-3">بحث</button>
-      <button type="reset" class="border border-neutral-300 rounded px-5 py-3">مسح البحث</button>
+      <button type="submit" disabled class="bg-brand-dark text-white rounded px-5 py-3">بحث</button>
+      <button type="reset" disabled class="border border-neutral-300 rounded px-5 py-3">مسح البحث</button>
     </div>
   </form>
   <p data-search-status role="status" aria-live="polite" class="mb-4 text-neutral-700">{guides.length === 0 ? 'لا توجد أدلة مراجعة منشورة بعد' : `عدد الأدلة ${guides.length}`}</p>
@@ -44,7 +44,7 @@ const types = ['توثيق', 'تعليم', 'إقامة_وجوازات', 'أخر�
     const empty = browser.querySelector<HTMLElement>('[data-no-matches]');
     const cards = [...browser.querySelectorAll<HTMLElement>('[data-guide-item]')];
     if (!form || !status || !empty) continue;
-    form.hidden = false;
+    for (const control of form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLButtonElement>('input,select,button')) control.disabled = false;
     const apply = () => {
       const values = new FormData(form);
       const filters = { query: String(values.get('query') ?? '').slice(0, 200), country: browser.dataset.country || String(values.get('country') ?? ''), serviceType: String(values.get('serviceType') ?? '') };
